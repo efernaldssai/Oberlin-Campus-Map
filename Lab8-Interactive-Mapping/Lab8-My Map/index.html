@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> GeoTag Interactive Mapping Exercise</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+</head>
+<style>
+
+.sidebar {
+  position: absolute;
+  left: 0px;
+  width: 250px;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  padding: 20px;
+  font-size: 16px;
+  border: solid;
+  background-color: #f2edeb;
+}
+.main-heading {
+    font-size: 15px;
+}
+</style>
+<body>
+  <div class="sidebar">
+  <font color="#226f54"><center><h2 id="main-heading" >Oberlin College Campus Highlights</h2></center></font>
+  <div>
+
+<div class="row">
+  <div class="column">
+    <center> <img src="images/OC.png" alt="Oberlin Logo" style="width:60%"> </center>
+  </div>
+  <font color="#226f54"><center><h3> Welcome to Oberlin!</h3></center></font>
+  </div>
+
+<h2 style="color: #8A4D6B;"> Oberlin's tagline is "Learning and Labor." </h2>
+<h2 style="color: #8A4D6B;"> This map depicts one student's experience of learning, labor, and hunger. </h2>
+<h3 style="color: #226f54;"> Purple buildings are those I worked campus jobs in. Blue rectangles contain co-ops I dined in. Red points indicate places I could go when the co-ops failed to feed me. </h3>
+
+<footer>
+       <p> Share this template! <br> https://github.com/mckeont/GeoTag </p>
+</footer>
+
+    <div id="map" style=" position: fixed; right: 0; left: 300px; top: 0; bottom: 0 "></div>
+
+    <!-- JS IMPORTS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src= "http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src= "js/setup.js"></script>
+    <script src= "js/oberlin.js"></script>
+
+    <script>
+
+// Create a style variable
+    var myStyle = {
+    radius: 5,
+    fillColor: "#B861D0",
+    color: "#000",
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.7
+};
+
+//Load in geojson
+    var oberlin =   L.geoJSON(oberlin, {
+          style: myStyle
+        }).bindPopup(function (layer) {
+       return "" + layer.feature.properties.name
+    }).addTo(map).bringToBack();
+
+// Make three simple circles
+var circle = L.circle([41.29382268854204, -82.22180665948814], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 3
+}).addTo(map);
+
+var circle = L.circle([41.292055516714704, -82.22233505275892], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 3
+}).addTo(map);
+
+
+var circle = L.circle([41.29574742875954, -82.21948118235179], {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.5,
+    radius: 3
+}).addTo(map);
+
+//Make another shape 
+
+var polygon = L.polygon([ 
+
+            [   
+
+               41.29228262465918, -82.21344434548591, 
+
+            ], 
+
+            [ 
+
+              41.291966224012356, -82.21344434548591,               
+
+            ], 
+
+            [ 
+
+              41.291966224012356, -82.21319490004727,              
+
+            ], 
+
+            [ 
+
+              41.29228262465918, -82.21319490004727,              
+
+            ], 
+
+            [ 
+
+              41.29228262465918, -82.21344434548591,              
+
+            ] 
+
+]).addTo(map); 
+
+
+//Make a shape
+
+var polygon = L.polygon([
+            [
+              41.28615330250818, -82.21931526803701,
+              
+            ],
+            [
+              41.28615330250818, -82.21958922752384,
+              
+            ],
+            [
+              41.28593046438661, -82.21958922752384,
+              
+            ],
+            [
+              41.28593046438661, -82.21931526803701,
+              
+            ],
+            [
+              41.28615330250818, -82.21931526803701,
+              
+            ]
+]).addTo(map);
+
+// Add a marker
+L.marker([39.983219999796114, -75.15356557830536]).addTo(map);
+    </script>
+
+</body>
+</html>
