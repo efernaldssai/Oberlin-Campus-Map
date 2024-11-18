@@ -1,2 +1,2 @@
-# GeoTag1
- interactive map
+# Interactive Oberlin Map 
+Includes files necessary to load an interactive map of Oberlin campus.
